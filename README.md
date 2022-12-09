@@ -25,8 +25,13 @@ ph = PropertyHash.new(h)
 p ph["a.c.d"]  # DEEEE
 p ph["b.zeee"] # 888
 
-pp ph.keys    # ["a.b", "a.c.d", "a.x", "a.y", "b.zeee"]
-pp ph.values  # [1, "DEEEE", 888, [9999], 888]
+ph["a.c.x"] = "X"
+
+pp ph.keys    # ["a.b", "a.c.d", "a.x", "a.y", "b.zeee", "a.c.x"]
+pp ph.values  # [1, "DEEEE", 888, [9999], 888, "X"]
+
+ph.each { |k, v| p k }
+pp ph.to_h  # h but with :a => { :c => { :x => "X" } }
 ```
 
 ## Installation
@@ -34,7 +39,7 @@ pp ph.values  # [1, "DEEEE", 888, [9999], 888]
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'property_hash'
+gem "property_hash"
 ```
 
 And then execute:
