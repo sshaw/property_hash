@@ -1,5 +1,7 @@
 # PropertyHash
 
+![PropertyHash CI Status](https://github.com/sshaw/property_hash/workflows/CI/badge.svg "PropertyHash CI Status")
+
 Access a nested Ruby Hash using Java-style properties as keys.
 
 ## Usage
