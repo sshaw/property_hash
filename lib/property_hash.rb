@@ -8,7 +8,7 @@ class PropertyHash
 
   def initialize(hash, use_symbols = true)
     @hash = hash.dup
-    @keys = keys_as_properties(hash)
+    @keys = keys_as_properties(@hash)
     @use_symbols = use_symbols || false
   end
 
@@ -50,12 +50,17 @@ class PropertyHash
 
   def [](key)
     keys = property_key(key)
-    # Does not support mixed keys
-    v = @hash.dig(*keys)
-    return v unless v.nil? && @use_symbols
 
-    keys.map!(&:to_sym)
-    @hash.dig(*keys)
+    begin
+      # FIXME: Does not support mixed keys
+      v = @hash.dig(*keys)
+      return v unless v.nil? && @use_symbols
+
+      keys.map!(&:to_sym)
+      @hash.dig(*keys)
+    rescue TypeError
+      # From dig. Ignore, value does not exist
+    end
   end
 
   private
