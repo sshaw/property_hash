@@ -1,4 +1,5 @@
 require "bundler/gem_tasks"
-require "minitest/test_task"
+require "rake/testtask"
 
-Minitest::TestTask.create
+Rake::TestTask.new
+task :default => :test

@@ -1,4 +1,6 @@
 require "minitest/spec"
+require "minitest/pride"
+require "minitest/autorun"
 
 describe PropertyHash do
   before do
